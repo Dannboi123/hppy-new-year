@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy New Year</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark:#12050c;
+      --bg-wine:#2b0f1e;
+      --rose-soft:#ffd6e8;
+    }
+
+    body {
+      margin:0;
+      font-family:'Playfair Display', cursive;
+      background:radial-gradient(circle at top,var(--bg-wine),var(--bg-dark) 70%);
+      color:var(--rose-soft);
+    }
+
+    .scroll-scene {
+      min-height:100vh;
+      padding:10vh 8vw;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:18px;
+      opacity:0;
+      transform:translateY(24px);
+      transition:opacity 1.4s ease, transform 1.4s ease;
+      text-align:center;
+    }
+
+    .scroll-scene.visible {
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    p {
+      font-size:1.35rem;
+      line-height:1.8;
+      margin:0;
+    }
+
+    .scroll-scene img {
+      margin-top:28px;
+      width:100%;
+      max-width:720px;
+      border-radius:18px;
+      filter:blur(6px) brightness(0.75);
+      opacity:0;
+      transform:translateY(16px) scale(0.98);
+      transition:filter 1.6s ease, opacity 1.6s ease, transform 1.6s ease;
+    }
+
+    .scroll-scene.visible img {
+      filter:blur(0) brightness(0.95);
+      opacity:1;
+      transform:translateY(0) scale(1);
+    }
+
+    .final-message {
+      margin-top:30px;
+      font-size:1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<audio autoplay loop>
+  <source src="Standard recording 2.mp3" type="audio/mpeg">
+</audio>
+
+<section class="scroll-scene">
+  <p>Before years had names.</p>
+  <p>Before we knew what staying meant.</p>
+  <img src="kid_earliest.jpg" alt="the beginning">
+</section>
+
+<section class="scroll-scene">
+  <p>Time moved quietly.</p>
+  <p>We did too.</p>
+  <img src="kid_later.jpg" alt="still growing">
+</section>
+
+<section class="scroll-scene">
+  <p>Somewhere along the way…</p>
+  <p>we didn’t drift.</p>
+  <img src="teen.jpg" alt="the bridge">
+</section>
+
+<section class="scroll-scene">
+  <p>Different versions of us.</p>
+  <p>The same familiarity.</p>
+  <img src="now.jpg" alt="now">
+</section>
+
+<section class="scroll-scene">
+  <p>I don’t know where this goes.</p>
+  <p>And I don’t need to.</p>
+  <p>I just know I’d like to find out…</p>
+  <p>with you.</p>
+  <div class="final-message">Happy New Year.</div>
+</section>
+
+<script>
+const scenes = document.querySelectorAll('.scroll-scene');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.6 });
+
+scenes.forEach(scene => observer.observe(scene));
+</script>
+
+</body>
+</html>
